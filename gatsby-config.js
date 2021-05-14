@@ -1,19 +1,12 @@
-const dotenv = require('dotenv');
-const {webFontsConfig} = require('@trevorblades/mui-theme');
-
-dotenv.config();
-
+require('dotenv').config();
 module.exports = {
   siteMetadata: {
     title: 'Trevor Blades'
   },
   plugins: [
-    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-mdx',
     'gatsby-plugin-svgr',
-    {
-      resolve: 'gatsby-theme-material-ui',
-      options: {webFontsConfig}
-    },
+    'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
@@ -28,6 +21,27 @@ module.exports = {
         url: 'https://api.github.com/graphql',
         headers: {
           Authorization: `Bearer ${process.env.GITHUB_TOKEN}`
+        }
+      }
+    },
+    {
+      resolve: 'gatsby-plugin-webfonts',
+      options: {
+        fonts: {
+          google: [
+            {
+              family: 'Poppins',
+              variants: ['500', '600']
+            },
+            {
+              family: 'Roboto',
+              variants: ['400', '700']
+            },
+            {
+              family: 'Roboto Mono',
+              variants: ['400']
+            }
+          ]
         }
       }
     }
